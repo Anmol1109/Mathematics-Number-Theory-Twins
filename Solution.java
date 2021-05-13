@@ -1,16 +1,19 @@
-import java.io.*;
-import java.math.*;
-import java.text.*;
-import java.util.*;
-import java.util.regex.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Solution {
 
-    // Complete the solve function below.
-    static int solve(int n, int m) {
-       int i = 0;
+    public static void main(String[] args) throws NumberFormatException, IOException {
+
+        BufferedReader inp = new BufferedReader(new InputStreamReader(System.in));
+        String[] s1 = inp.readLine().split(" ");
+        int first = Integer.parseInt(s1[0]);
+        int last = Integer.parseInt(s1[1]);
+
+        int i = 0;
         int ans = 0;
-        for(i = n; i < m; i++) {
+        for(i = first; i < last; i++) {
             
             int j = i+1;
             int j2 = j+1;
@@ -21,7 +24,7 @@ public class Solution {
                         ans++;
                     }
                 }
-                if(j2 <= m && isPrime(j2)) {
+                if(j2 <= last && isPrime(j2)) {
                     if(j2 - i == 2) {
                         ans++;
                     } 
@@ -29,7 +32,7 @@ public class Solution {
             }
         }
         
-        return ans;
+        System.out.println(ans);
     }
 
     private static boolean isPrime(int num) {
@@ -45,24 +48,4 @@ public class Solution {
         return true;
     }
 
-    private static final Scanner scanner = new Scanner(System.in);
-
-    public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
-
-        String[] nm = scanner.nextLine().split(" ");
-
-        int n = Integer.parseInt(nm[0]);
-
-        int m = Integer.parseInt(nm[1]);
-
-        int result = solve(n, m);
-
-        bufferedWriter.write(String.valueOf(result));
-        bufferedWriter.newLine();
-
-        bufferedWriter.close();
-
-        scanner.close();
-    }
 }
